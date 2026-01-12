@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Us 💖</title>
+
+<style>
+body {
+  background-color: #fff5f8;
+  font-family: Arial;
+  margin: 0;
+  padding: 20px;
+}
+
+
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  max-width: 900px;
+  margin: auto;
+}
+
+img {
+  width: 260px;
+  max-width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.text {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/* Phone view */
+@media (max-width: 700px) {
+  .container {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<h2 style="text-align:center;">Every year, every moment 💕</h2>
+
+<div class="container">
+
+  <img src="together.jpg">
+
+  <div class="text">
+    We’ve shared laughs, silence,
+    dreams, and love.<br><br>
+
+    I don’t want just today...<br><br>
+
+    <b>
+    Will you stay by my side,<br>
+    every year like this,<br>
+    for the rest of our lives? 💖
+    </b>
+  </div>
+
+</div>
+
+<div style="text-align:center; position:relative; height:120px;">
+
+  <!-- YES button -->
+  <a href="yes.html">
+    <button id="yesBtn" style="
+      padding:14px 32px;
+      font-size:18px;
+      background-color:#ff4d6d;
+      color:white;
+      border:none;
+      border-radius:30px;
+      cursor:pointer;
+      margin-right:20px;
+    ">
+      YES ❤️
+    </button>
+  </a>
+
+  <!-- NO button -->
+  <button id="noBtn" style="
+    padding:14px 32px;
+    font-size:18px;
+    background-color:#6c757d;
+    color:white;
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+    position:absolute;
+  ">
+    NO 💔
+  </button>
+
+</div>
+
+<script>
+  const noBtn = document.getElementById("noBtn");
+
+  noBtn.addEventListener("mouseover", moveButton);
+  noBtn.addEventListener("touchstart", moveButton);
+
+  function moveButton() {
+    const x = Math.random() * 250;
+    const y = Math.random() * 80;
+
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+  }
+</script>
+
+
+</body>
+</html>
