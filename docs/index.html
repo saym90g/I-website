@@ -4,6 +4,24 @@
           <title>My First Website</title>
 </head>
 <body style="background-color:pink; text-align:center;">
+          <script>
+  // Check if already unlocked
+  if (!sessionStorage.getItem("loveUnlocked")) {
+
+    var password = prompt(
+      "💖 This space is only for us.\nEnter the password:"
+    );
+
+    if (password === "pipposdevi") {
+      sessionStorage.setItem("loveUnlocked", "yes");
+    } else {
+      alert("❌ Wrong password");
+      window.location.href = "https://google.com";
+    }
+
+  }
+</script>
+
 
 
       
