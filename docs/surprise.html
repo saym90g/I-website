@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Just for You 💖</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(to top, #ff758c, #ff7eb3);
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+   
+
+    h1 {
+      position: relative;
+      top: 40%;
+      color: white;
+      font-size: 28px;
+      animation: fadeIn 3s;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .heart {
+      position: fixed;
+      bottom: -20px;
+      font-size: 22px;
+      animation: rise 6s linear;
+    }
+
+    @keyframes rise {
+      from {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-120vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>
+    You are my forever 💕 <br>
+    I choose you every day
+  </h1>
+
+  <script>
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 6000);
+    }, 300);
+  </script>
+
+  <br><br>
+
+  <a href="together.html">
+     <button style="
+        padding:14px 28px;
+        font-size:16px;
+        background-color:#ff4d6d;
+        color:white;
+        border:none;
+        border-radius:30px;
+        cursor:pointer;
+">
+
+         Stay With Me 🌻➡️
+         </button>
+  </a>
+
+</body>
+</html>
