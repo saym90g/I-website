@@ -1,0 +1,197 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Now Playing ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  background: radial-gradient(circle at top, #260018, #000);
+  overflow: hidden;
+  color: white;
+  font-family: "Segoe UI", sans-serif;
+  text-align: center;
+}
+
+/* MUSIC VISUALIZER */
+.visualizer {
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+}
+
+.visualizer span {
+  width: 6px;
+  height: 18px;
+  background: linear-gradient(#ff4d6d, #ff9aa2);
+  border-radius: 10px;
+  animation: bounce 1s infinite ease-in-out;
+}
+
+.visualizer span:nth-child(1) { animation-delay: 0s; }
+.visualizer span:nth-child(2) { animation-delay: 0.1s; }
+.visualizer span:nth-child(3) { animation-delay: 0.2s; }
+.visualizer span:nth-child(4) { animation-delay: 0.3s; }
+.visualizer span:nth-child(5) { animation-delay: 0.4s; }
+.visualizer span:nth-child(6) { animation-delay: 0.3s; }
+.visualizer span:nth-child(7) { animation-delay: 0.2s; }
+.visualizer span:nth-child(8) { animation-delay: 0.1s; }
+
+@keyframes bounce {
+  0%, 100% { height: 15px; }
+  50% { height: 55px; }
+}
+
+/* QUOTES */
+#quote {
+  position: absolute;
+  bottom: 22%;
+  width: 100%;
+  font-size: 24px;
+  letter-spacing: 1px;
+  opacity: 0;
+  transition: opacity 2s ease;
+}
+
+/* HEARTS */
+.heart {
+  position: absolute;
+  color: #ff4d6d;
+  font-size: 22px;
+  animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+  from { transform: translateY(100vh) scale(1); opacity: 1; }
+  to { transform: translateY(-10vh) scale(1.6); opacity: 0; }
+}
+
+/* ROSES */
+.rose {
+  position: absolute;
+  font-size: 20px;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  from { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+  to { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+
+/* HEART BLAST */
+.blast {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  font-size: 30px;
+  color: #ff4d6d;
+  animation: explode 1.2s ease-out forwards;
+}
+
+@keyframes explode {
+  from { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  to { transform: translate(-50%, -50%) scale(6); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="visualizer">
+  <span></span><span></span><span></span><span></span>
+  <span></span><span></span><span></span><span></span>
+</div>
+
+<div id="quote"></div>
+
+<audio id="song" autoplay loop muted playsinline>
+  <source src="love.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+/* AUTOPLAY FIX */
+const song = document.getElementById("song");
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    song.muted = false;
+    song.play().catch(()=>{});
+  }, 500);
+});
+
+/* QUOTES */
+const quotes = [
+  "Every beat of my heart whispers your name 💖",
+  "As long as my heart beats, it beats for you",
+  "This heart found its home in you ❤️",
+  "My heartbeat isn’t normal anymore — it’s you",
+  "If my heart stops, let it stop in your arms",
+  "One heart. One soul. One love.",
+  "You are the rhythm my heart follows",
+  "Forever sounds perfect with you",
+  "And this... is forever 💕"
+];
+
+let index = 0;
+const quoteBox = document.getElementById("quote");
+
+setInterval(() => {
+  quoteBox.style.opacity = 0;
+
+  setTimeout(() => {
+    quoteBox.innerText = quotes[index];
+    quoteBox.style.opacity = 1;
+
+    // TRIGGER HEART BLAST ON LAST QUOTE
+    if (quotes[index].includes("forever 💕")) {
+      heartBlast();
+    }
+
+    index = (index + 1) % quotes.length;
+  }, 2000);
+
+}, 9000);
+
+/* HEART BLAST FUNCTION */
+function heartBlast() {
+  for (let i = 0; i < 25; i++) {
+    const b = document.createElement("div");
+    b.className = "blast";
+    b.innerHTML = "❤";
+    b.style.left = 50 + (Math.random() * 20 - 10) + "vw";
+    b.style.top = 50 + (Math.random() * 20 - 10) + "vh";
+    document.body.appendChild(b);
+    setTimeout(() => b.remove(), 1200);
+  }
+}
+
+/* FLOATING HEARTS */
+setInterval(() => {
+  const h = document.createElement("div");
+  h.className = "heart";
+  h.innerHTML = "❤";
+  h.style.left = Math.random() * 100 + "vw";
+  h.style.animationDuration = 6 + Math.random() * 6 + "s";
+  document.body.appendChild(h);
+  setTimeout(() => h.remove(), 12000);
+}, 250);
+
+/* ROSES */
+setInterval(() => {
+  const r = document.createElement("div");
+  r.className = "rose";
+  r.innerHTML = "🌹";
+  r.style.left = Math.random() * 100 + "vw";
+  r.style.animationDuration = 6 + Math.random() * 5 + "s";
+  document.body.appendChild(r);
+  setTimeout(() => r.remove(), 11000);
+}, 700);
+</script>
+
+</body>
+</html>
+
